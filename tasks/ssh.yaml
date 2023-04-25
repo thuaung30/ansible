@@ -24,11 +24,3 @@
   tags:
     - install
     - ssh
-
-- name: Decrypting ssh vault
-  command:
-    cmd: "ansible-vault decrypt id_ed25519 --output bruh"
-    chdir: "{{ lookup('env', 'HOME') }}/.ssh"
-  tags:
-    - install
-    - ssh
