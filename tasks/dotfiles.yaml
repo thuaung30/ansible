@@ -12,7 +12,7 @@
     repo: "git@github.com:thuaung30/dotfiles.git"
     dest: "{{ lookup('env', 'HOME')}}/.dotfiles"
     accept_hostkey: yes
-    key_file: "./.ssh/id_ed25519"
+    key_file: "{{ lookup('env', 'HOME') }}/.ssh/id_ed25519"
   tags:
     - install
     - dotfiles
@@ -37,7 +37,7 @@
   ansible.builtin.copy:
     dest: /etc/paths.d/scripts
     content: |
-      "lookup('env', 'HOME')/.config/scripts" 
+      "{{ lookup('env', 'HOME') }}/.config/scripts" 
   delegate_to: localhost
   become: yes
   when: script_stats.stat.exists == False
