@@ -1,0 +1,33 @@
+- name: Make sure misc formulae are installed
+  community.general.homebrew:
+    name:
+      - tmux
+      - nvim
+      - fzf 
+      - tree
+      - tree-sitter 
+      - stow
+    state: present
+  tags:
+    - install
+    - misc
+      
+- name: Make sure rust suite is installed
+  community.general.homebrew:
+    name: 
+      - ripgrep
+      - exa
+      - fd
+      - fnm
+    state: present
+  tags:
+    - install
+    - misc
+
+- name: Make sure librewolf cask is installed
+  community.general.homebrew_cask:
+    name: librewolf
+    state: present
+  tags:
+    - install
+    - misc

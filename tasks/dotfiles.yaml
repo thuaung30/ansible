@@ -1,0 +1,26 @@
+- name:  Install stow
+  community.general.homebrew:
+    name:
+      - stow
+    state: present
+  tags:
+    - install
+    - dotfiles
+
+- name: Clone my dotfiles
+  git:
+    repo: "git@github.com:thuaung30/dotfiles.git"
+    dest: "{{ lookup('env', 'HOME')}}/.dotfiles"
+    accept_hostkey: yes
+    key_file: "./.ssh/id_ed25519"
+  tags:
+    - install
+    - dotfiles
+
+- name: Stow dotfiles
+  command:
+    cmd: ./stow.sh
+    chdir: "{{ lookup('env', 'HOME') }}/.dotfiles"
+  tags:
+    - install
+    - dotfiles
