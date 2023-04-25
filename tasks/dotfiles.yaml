@@ -19,8 +19,28 @@
 
 - name: Stow dotfiles
   command:
-    cmd: ./stow.sh
+    cmd: ./stowdis.sh
     chdir: "{{ lookup('env', 'HOME') }}/.dotfiles"
+  tags:
+    - install
+    - dotfiles
+
+- name: Check that script path exists
+  stat:
+    path: /etc/paths.d/scripts
+  register: script_stats
+  tags:
+    - install
+    - dotfiles
+
+- name: Set up scripts path
+  ansible.builtin.copy:
+    dest: /etc/paths.d/scripts
+    content: |
+      "lookup('env', 'HOME')/.config/scripts" 
+  delegate_to: localhost
+  become: yes
+  when: script_stats.stat.exists == False
   tags:
     - install
     - dotfiles
