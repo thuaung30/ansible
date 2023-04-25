@@ -1,9 +1,3 @@
-- name: Change default shell to zsh
-  command: chsh -s $(which zsh) 
-  tags:
-    - install
-    - zsh
-
 - name: Check that the somefile.conf exists
   stat:
     path: "{{ lookup('env', 'HOME' }}/.oh-my-zsh"
