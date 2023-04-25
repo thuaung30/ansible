@@ -1,6 +1,6 @@
 - name: Check that the somefile.conf exists
   stat:
-    path: "{{ lookup('env', 'HOME' }}/.oh-my-zsh"
+    path: "{{ lookup('env', 'HOME') }}/.oh-my-zsh"
   register: oh_my_stats
   tags:
     - install
