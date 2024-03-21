@@ -19,6 +19,7 @@
       - exa
       - fd
       - fnm
+      - zoxide
     state: present
   tags:
     - install
